@@ -12,7 +12,6 @@ describe("findMaxSum", () => {
   });
 
   it("should work with negative numbers", () => {
-    console.log([-1, -2, -3, -4, -5]);
     const maxSum = findMaxSum([-1, -2, -3, -4, -5]);
     expect(maxSum).toEqual(-1 + -2);
   });
