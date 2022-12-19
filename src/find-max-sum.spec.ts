@@ -1,4 +1,5 @@
 import { findMaxSum } from "./find-max-sum";
+import { generateNumbersArray } from "./generate-numbers-array";
 
 describe("findMaxSum", () => {
   it("should find the max sum", () => {
@@ -21,13 +22,19 @@ describe("findMaxSum", () => {
     expect(maxSum).toEqual(-1 + 5);
   });
 
-  it("should return 0 if array length is 0", () => {
-    const maxSum = findMaxSum([]);
-    expect(maxSum).toEqual(0);
+  it("should throw an error if array length is 0", () => {
+    expect(() => findMaxSum([])).toThrow()
   });
 
-  it("should return 0 if array length is 0", () => {
-    const maxSum = findMaxSum([1]);
-    expect(maxSum).toEqual(0);
+  it("should throw an error if array length is 1", () => {
+    expect(() => findMaxSum([1])).toThrow()
+  });
+
+  it("performance should be considered", () => {
+    const bigArrayOfNumbers = generateNumbersArray();
+    const startedAt = performance.now();
+    expect(() => findMaxSum(bigArrayOfNumbers)).not.toThrow();
+    const endedAt = performance.now();
+    expect(endedAt - startedAt).toBeLessThanOrEqual(1000);
   });
 });
